@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <AssemblyName>RhinoViterRuntimeScripts.Payload</AssemblyName>
+    <RootNamespace>RhinoViterRuntimeScripts</RootNamespace>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <GenerateDependencyFile>true</GenerateDependencyFile>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="RhinoCommon" Version="$(RhinoCommonPackageVersion)" PrivateAssets="all" ExcludeAssets="runtime" />
+    <ProjectReference Include="..\contracts\RhinoViterRuntimeScripts.Contracts.fsproj" Private="false" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="../src/Commands/Rss/Hello.fs" />
+    <Compile Include="../src/Commands/CommandList.fs" />
+  </ItemGroup>
+</Project>

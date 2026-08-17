@@ -1,0 +1,12 @@
+bin/
+obj/
+dist/
+*.user
+*.suo
+.vs/
+.vscode/
+.idea/
+TestResults/
+*.rhp
+.fake
+
