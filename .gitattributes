@@ -1,0 +1,3 @@
+# Store text in the repository with LF line endings on every platform.
+* text=auto eol=lf
+

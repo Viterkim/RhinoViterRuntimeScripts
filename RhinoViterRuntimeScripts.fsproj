@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetExt>.rhp</TargetExt>
+    <AssemblyName>RhinoViterRuntimeScripts</AssemblyName>
+    <RootNamespace>RhinoViterRuntimeScripts</RootNamespace>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+    <RunSourceChecks Condition="'$(RunSourceChecks)' == ''">true</RunSourceChecks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/Viterkim/RhinoViterRuntimeScripts</RepositoryUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="RhinoCommon" Version="$(RhinoCommonPackageVersion)" PrivateAssets="all" ExcludeAssets="runtime" />
+    <ProjectReference Include="contracts\RhinoViterRuntimeScripts.Contracts.fsproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="src/AssemblyInfo.fs" />
+    <Compile Include="src/Runtime/Registry.fs" />
+    <Compile Include="src/Runtime/PayloadLoader.fs" />
+    <Compile Include="src/Runtime/Automation.fs" />
+    <Compile Include="src/Plugin/Plugin.fs" />
+    <Compile Include="src/Commands/Commands.fs" />
+  </ItemGroup>
+  <Target Name="CheckSource" BeforeTargets="CoreCompile" Condition="'$(RunSourceChecks)' == 'true'">
+    <Exec Command="dotnet fsi &quot;$(MSBuildProjectDirectory)/tools/check-all.fsx&quot; -- &quot;$(MSBuildProjectDirectory)/src&quot;" IgnoreExitCode="true">
+      <Output TaskParameter="ExitCode" PropertyName="SourceCheckExitCode" />
+    </Exec>
+    <Exec Command="dotnet fsi &quot;$(MSBuildProjectDirectory)/tools/check-all.fsx&quot; -- &quot;$(MSBuildProjectDirectory)/contracts&quot;" IgnoreExitCode="true">
+      <Output TaskParameter="ExitCode" PropertyName="ContractCheckExitCode" />
+    </Exec>
+    <Error Condition="'$(SourceCheckExitCode)' != '0' Or '$(ContractCheckExitCode)' != '0'" Text="Source checks failed." />
+  </Target>
+</Project>

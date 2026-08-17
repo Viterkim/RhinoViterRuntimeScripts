@@ -1,0 +1,27 @@
+<Project>
+  <PropertyGroup>
+    <RhinoViterRuntimeScriptsPlatform Condition="'$(RhinoViterRuntimeScriptsPlatform)' == ''">win</RhinoViterRuntimeScriptsPlatform>
+    <RhinoDefaultVersion>9</RhinoDefaultVersion>
+    <RhinoSupportedVersions>8;9</RhinoSupportedVersions>
+    <RhinoExperimentalVersions></RhinoExperimentalVersions>
+    <RhinoBuildVersions>$(RhinoSupportedVersions);$(RhinoExperimentalVersions)</RhinoBuildVersions>
+    <RhinoReleaseVersions>$(RhinoSupportedVersions)</RhinoReleaseVersions>
+    <RhinoMajorVersion Condition="'$(RhinoMajorVersion)' == ''">$(RhinoDefaultVersion)</RhinoMajorVersion>
+    <BaseOutputPath Condition="'$(MSBuildProjectName)' == 'RhinoViterRuntimeScripts'">$(MSBuildThisFileDirectory)bin\rh$(RhinoMajorVersion)\</BaseOutputPath>
+    <BaseIntermediateOutputPath Condition="'$(MSBuildProjectName)' == 'RhinoViterRuntimeScripts'">$(MSBuildThisFileDirectory)obj\rh$(RhinoMajorVersion)\Host\</BaseIntermediateOutputPath>
+    <BaseOutputPath Condition="'$(MSBuildProjectName)' == 'RhinoViterRuntimeScripts.Contracts'">$(MSBuildThisFileDirectory)bin\rh$(RhinoMajorVersion)\Contracts\</BaseOutputPath>
+    <BaseIntermediateOutputPath Condition="'$(MSBuildProjectName)' == 'RhinoViterRuntimeScripts.Contracts'">$(MSBuildThisFileDirectory)obj\rh$(RhinoMajorVersion)\Contracts\</BaseIntermediateOutputPath>
+    <BaseOutputPath Condition="'$(MSBuildProjectName)' == 'RhinoViterRuntimeScripts.Payload'">$(MSBuildThisFileDirectory)bin\rh$(RhinoMajorVersion)\Payload\</BaseOutputPath>
+    <BaseIntermediateOutputPath Condition="'$(MSBuildProjectName)' == 'RhinoViterRuntimeScripts.Payload'">$(MSBuildThisFileDirectory)obj\rh$(RhinoMajorVersion)\Payload\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(RhinoMajorVersion)' == '8'">
+    <TargetFramework Condition="'$(TargetFramework)' == ''">net8.0-windows</TargetFramework>
+    <RhinoCommonPackageVersion Condition="'$(RhinoCommonPackageVersion)' == ''">8.34.26223.11001</RhinoCommonPackageVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(RhinoMajorVersion)' == '9'">
+    <TargetFramework Condition="'$(TargetFramework)' == ''">net10.0-windows</TargetFramework>
+    <RhinoCommonPackageVersion Condition="'$(RhinoCommonPackageVersion)' == ''">9.0.26230.12303-beta</RhinoCommonPackageVersion>
+  </PropertyGroup>
+</Project>
